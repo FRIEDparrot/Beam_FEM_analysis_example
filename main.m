@@ -5,6 +5,7 @@ addpath(genpath("elements"));
 addpath(genpath("load_definition")); 
 addpath(genpath("meshing"))
 
+% mm为全局单位
 E = 2e5;
 nu = 0.3;
 thick = 10;
@@ -31,9 +32,9 @@ for i = 1: Mesh.elem_number
     K_t(glob_vec, glob_vec) = K_t(glob_vec, glob_vec) + elem.Ke;
 end
 
-% 使用网格计算节点在对应方向上的节点力 -> pressure 使用计算获取, 由于横向50个节点, 0.2N/mm, 长度300mm
-% 因此平均每个节点上分配 3 N
-Q = apply_pressure(Mesh, 3);
+% 使用网格计算节点在对应方向上的节点力 -> pressure 使用计算获取, 由于横向50段, 0.2N/mm, 长度300mm
+% 因此平均每个段上分配 1.2 N
+Q = apply_pressure(Mesh, 1.2);
 
 % 使用对角线乘大数的方法,同乘10^20
 for i = 2*(Mesh.node_number-Mesh.yelem_num) -1: 2*Mesh.node_number

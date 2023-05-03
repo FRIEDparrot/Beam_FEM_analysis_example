@@ -53,6 +53,8 @@ mat_size = [Mesh.yelem_num+1, Mesh.xelem_num+1];
 X = reshape(x_new, mat_size);
 Y = reshape(y_new, mat_size);
 Dis = reshape(node_displacement, mat_size);
+DisX = reshape(u, mat_size);
+DisY = reshape(v, mat_size);
 SigX = reshape(sigma_vec(1,:), mat_size);
 SigY = reshape(sigma_vec(2,:), mat_size);
 % 按照x,y序列重整sigma_x, sigma_y和D的规模
@@ -65,8 +67,10 @@ colorbar;
 title("displacement figure")
 axis equal
 
+
 subplot(3,1,2);
 hold on
+% ====== 绘制位移只需要把下面两行SigX改成DisX即可==========
 surf(X,Y, SigX);
 contour3(X,Y,SigX + eps,6,"LineWidth",1,"ShowText","on", "LineColor","white");
 colorbar;
