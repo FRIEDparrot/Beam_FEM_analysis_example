@@ -36,10 +36,10 @@ end
 % 因此平均每个段上分配 1.2 N
 Q = apply_pressure(Mesh, 1.2);
 
-% 使用对角线乘大数的方法,同乘10^20
+% 使用对角线乘大数的方法,同乘10^22
 for i = 2*(Mesh.node_number-Mesh.yelem_num) -1: 2*Mesh.node_number
-    K_t(i,i) = K_t(i,i) * 1e20;
-    Q(i) = Q(i) * 1e20;
+    K_t(i,i) = K_t(i,i) * 1e22;
+    Q(i) = Q(i) * 1e22;
 end
 
 % 雅各比矩阵的det计算,注意总体刚度矩阵组装时的系数,
