@@ -47,7 +47,7 @@ disp (join(["max_displacement :", num2str(max(node_displacement))]));
 
 % 绘制变形之后的位移，应力和应变图像
 x_new = Mesh.node_xloc + u * magnitude_factor;
-y_new = h - (Mesh.node_yloc + v * magnitude_factor);
+y_new = Mesh.node_yloc + v * magnitude_factor;
 
 mat_size = [Mesh.yelem_num+1, Mesh.xelem_num+1];
 X = reshape(x_new, mat_size);
@@ -62,6 +62,7 @@ hold on
 surf(X,Y, Dis,"EdgeColor","none");
 contour3(X,Y,Dis + eps, 10,"LineWidth",1.5,"ShowText","on", "LineColor","white");
 colorbar;
+title("displacement figure")
 axis equal
 
 subplot(3,1,2);
@@ -69,6 +70,7 @@ hold on
 surf(X,Y, SigX);
 contour3(X,Y,SigX + eps,6,"LineWidth",1,"ShowText","on", "LineColor","white");
 colorbar;
+title("figure sigma_x")
 axis equal
 
 subplot(3,1,3);
@@ -76,6 +78,7 @@ hold on
 surf(X,Y, SigY);
 contour3(X,Y,SigY + eps,10,"LineWidth",1,"ShowText","off", "LineColor","white")
 colorbar
+title("figure sigma_y")
 axis equal
 % Sig = reshape(sigma_vec(1,:), );
 

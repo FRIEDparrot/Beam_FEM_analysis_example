@@ -55,7 +55,7 @@ disp("======= Mesh generated successfully ========");
 toc;
 
 %% ----------- 绘制梁的变形图 -----------
-Factor = 3;   % 变形放大因子
+Factor = 400;   % 变形放大因子
 % figure("Name","Displacement");
 % plot_displacement(H, Mesh, u, v, Factor); % 绘制原始和之后的变形图
 % colormap spring
@@ -65,3 +65,6 @@ figure("Name","Strain: sigma_x");
 plot_stress(u,v,elem,Mesh, H, Factor);  % 求解并绘制应力图像
 disp("======= Progress run ended ========");
 toc
+
+% 
+% firstly, fixed the sign of the calculated result of the beam(include sigma x and sigma y), secondly the origin point of the beam is (0,0)

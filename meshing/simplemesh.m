@@ -81,7 +81,7 @@ if Mesh.elem_node_number == 4
         Table(2, i) = Table(3,i) + 1;
     end
     Mesh.node_xloc = reshape(repmat(0: Mesh.dx : l,Mesh.yelem_num +1, 1),1, Mesh.node_number);
-    Mesh.node_yloc = repmat(0: Mesh.dy : h,1, Mesh.xelem_num+1);
+    Mesh.node_yloc = - repmat(0: Mesh.dy : h,1, Mesh.xelem_num+1) + h;
     % 记录每一个节点的x,y坐标
     
     % 每一个节点,向右连接和向下连接
