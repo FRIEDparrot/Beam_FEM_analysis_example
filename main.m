@@ -39,11 +39,12 @@ Q = apply_pressure(Mesh, 1.2);
 % 使用对角线乘大数的方法,同乘10^22
 for i = 2*(Mesh.node_number-Mesh.yelem_num) -1: 2*Mesh.node_number
     K_t(i,i) = K_t(i,i) * 1e22;
-    Q(i) = Q(i) * 1e22;
+    Q(i) = Q(i) * 1e22 * 0;      % 对于位移边界, 由于K_{ii} *u_{i} = Q_{i} 而u_i为0, 设置为0
 end
 
 % 雅各比矩阵的det计算,注意总体刚度矩阵组装时的系数,
 J = (Mesh.dx)/2 * (Mesh.dy)/2; % 对应的雅各比矩阵
+
 node_trans = (J * K_t)\ Q;     % 计算对应的位移矩阵
 
 % 最终再加上固定约束
